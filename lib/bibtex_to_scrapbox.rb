@@ -9,7 +9,7 @@ module BibtexToScrapbox
       @@converters.push Converter.new(path)
     end
 
-    def Converter.start()
+    def Converter.perform()
       pages=[]
       @@converters.map do |converter|
         pages.concat converter.start()

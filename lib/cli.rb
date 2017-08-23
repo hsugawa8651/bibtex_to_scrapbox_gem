@@ -9,10 +9,16 @@ module BibtexToScrapbox
 
     desc 'convert FILES [options]', 'Convert bibtex files to scrapbox-json'
     def convert(*paths)
-      paths.each do |path|
-        BibtexToScrapbox::Converter.add(path)
+      if paths.length > 0
+        paths.each do |path|
+          BibtexToScrapbox::Converter.add(path)
+        end
+      else
+        while path=$stdin.gets
+          BibtexToScrapbox::Converter.add(path.chomp)
+        end
       end
-      BibtexToScrapbox::Converter.start()
+      BibtexToScrapbox::Converter.perform()
     end
 
     desc 'version', 'version'
